@@ -93,8 +93,8 @@ IMPORTANT: Use the DuckDuckGo search tool to:
 Format your response using clear markdown headers and bullet points. Be concise yet thorough.
 """
 
-st.title("🏥 Medical Imaging Diagnosis Agent")
-st.write("Upload a medical image for professional analysis")
+st.title("🏥 Clinical AI Scribe & Multimodal Medical Diagnostic System")
+st.write("Upload radiological scans for multimodal diagnostic triage, ICD-10 extraction, and FHIR R4 report synthesis")
 
 # Create containers for better organization
 upload_container = st.container()
