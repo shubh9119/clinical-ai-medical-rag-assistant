@@ -26,6 +26,6 @@ jobs:
         run: |
           date -u +"Last verified: %Y-%m-%dT%H:%M:%SZ" > .github/ci_verified_status.txt
           git config user.name "Shubham Singh"
-          git config user.email "shubhu64999@gmail.com"
+          git config user.email "ss7944844@gmail.com"
           git add .github/ci_verified_status.txt
           git diff --staged --quiet || (git commit -m "chore(ci): update automated verification status" && git push origin main)
