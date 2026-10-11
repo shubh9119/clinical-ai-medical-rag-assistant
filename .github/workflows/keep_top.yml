@@ -1,0 +1,31 @@
+name: Automated Benchmark & Activity Sync
+
+on:
+  schedule:
+    # Runs daily at 06:00 UTC to keep repository activity and benchmarks fresh at the top of the profile
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-status:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run unit test verification
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest
+          python -m pytest -v
+
+      - name: Update CI verification timestamp
+        run: |
+          date -u +"Last verified: %Y-%m-%dT%H:%M:%SZ" > .github/ci_verified_status.txt
+          git config user.name "Shubham Singh"
+          git config user.email "shubhu64999@gmail.com"
+          git add .github/ci_verified_status.txt
+          git diff --staged --quiet || (git commit -m "chore(ci): update automated verification status" && git push origin main)
